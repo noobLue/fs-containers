@@ -1,0 +1,20 @@
+myy@2001-14bb-ce-e717-a508-a338-ab92-55c7:~/fs-containers/todo-app/todo-backend$ sudo docker exec -it todo-backend-redis-1 redis-cli
+[sudo] password for myy:
+127.0.0.1:6379> KEYS *
+1) "added_todos"
+127.0.0.1:6379> GET added_todos
+"1"
+127.0.0.1:6379> SET added_todos 9001
+OK
+127.0.0.1:6379> GET added_todos
+"9002"
+127.0.0.1:6379> DEL added_todos
+(integer) 1
+127.0.0.1:6379> KEYS *
+(empty array)
+127.0.0.1:6379> GET added_todos
+(nil)
+127.0.0.1:6379> GET added_todos
+"1"
+127.0.0.1:6379> exit
+myy@2001-14bb-ce-e717-a508-a338-ab92-55c7:~/fs-containers/todo-app/todo-backend$
