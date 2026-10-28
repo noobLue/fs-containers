@@ -2,6 +2,8 @@ const express = require('express');
 const { Todo } = require('../mongo')
 const router = express.Router();
 
+const redis = require('../redis')
+
 async function getRedisTodos()
 {
   return Number(await redis.get('added_todos')) || 0
