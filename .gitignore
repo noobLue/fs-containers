@@ -21,3 +21,5 @@ todo-app/todo-backend/mongo_data/
 todo-app/todo-backend/redis_data/
 
 temp/
+
+my-app/backend/mongo_data/

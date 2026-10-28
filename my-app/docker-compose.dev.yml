@@ -1,0 +1,43 @@
+services:
+  mongo:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - ./backend/mongo_data:/data/db:Z
+
+  backend:
+    image: phonebook-back-dev
+    build:
+      context: ./backend
+      dockerfile: dev.Dockerfile
+    volumes:
+      - ./backend:/usr/src/app:z
+      - /usr/src/app/node_modules
+    environment:
+      - PORT=3001
+      - MONGODB_URI=mongodb://root:example@mongo:27017/phonebook?authSource=admin
+    depends_on:
+      - mongo
+
+  app:
+    image: phonebook-front-dev
+    build:
+      context: ./frontend
+      dockerfile: dev.Dockerfile
+    volumes:
+      - ./frontend:/usr/src/app:z
+      - /usr/src/app/node_modules
+    environment:
+      - WDS_SOCKET_PORT=0
+
+  nginx:
+    image: nginx:1.29
+    volumes:
+      - ./nginx.dev.conf:/etc/nginx/nginx.conf:ro,z
+    ports:
+      - 8080:80
+    depends_on:
+      - app
+      - backend
