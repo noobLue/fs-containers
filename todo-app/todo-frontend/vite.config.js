@@ -6,5 +6,8 @@ export default defineConfig({
   plugins: [react()],
   test: {
     environment: 'jsdom'
+  },
+  server: {
+    allowedHosts: ['app', 'localhost'],
   }
 })
