@@ -4,11 +4,20 @@ node_modules/
 todo-app/redis_data/
 todo-app/mongo_data/
 
-todo-app/todo-backend/redis_data/
-
 # Playwright artifacts
 todo-app/test-results/
 todo-app/playwright-report/
 todo-app/playwright/.cache/
+
+# Playwright output
+todo-tests/playwright-report/
+todo-tests/test-results/
+
+# Dependencies
+node_modules/
+
+# Database data
+todo-app/todo-backend/mongo_data/
+todo-app/todo-backend/redis_data/
 
 temp/
