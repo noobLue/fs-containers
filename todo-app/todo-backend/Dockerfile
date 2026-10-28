@@ -4,11 +4,9 @@ WORKDIR /usr/src/app
 
 COPY --chown=node:node . .
 
-COPY . .
-
 RUN npm ci --omit=dev
 
-#ENV DEBUG=temp:*
+ENV NODE_ENV=production
 
 USER node
 
