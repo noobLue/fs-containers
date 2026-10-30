@@ -1,0 +1,35 @@
+services:
+  mongo:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - ./backend/mongo_data:/data/db:Z
+
+  backend:
+    image: phonebook-backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+      - PORT=3001
+      - MONGODB_URI=mongodb://root:example@mongo:27017/phonebook?authSource=admin
+    depends_on:
+      - mongo
+
+  app:
+    image: phonebook-front
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+
+  nginx:
+    image: nginx:1.29
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro,z
+    ports:
+      - 8080:80
+    depends_on:
+      - app
+      - backend

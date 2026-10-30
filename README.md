@@ -20,9 +20,16 @@ docker compose up --build
 
 Containerized fullstack 3 project in ./my-app/
 
+Developer container
 ``` bash 
 cd my-app
 docker compose -f docker-compose.dev.yml up --build
+```
+
+Production container
+``` bash 
+cd my-app
+docker compose up --build
 ```
 
 https://github.com/noobLue/fullstack3 (backend)
